@@ -36,8 +36,12 @@ public class StudenteServiceImpl implements IStudenteService {
 
 	@Transactional
 	@Override
-	public void aggiorna(Studente studenteInstance) {
-		studenteDAO.update(studenteInstance);
+	public void aggiorna(Studente studenteInstance) throws Exception {
+		List<Studente> studenti = studenteDAO.findEagerFetch(studenteInstance.getAulaScolastica().getId());
+		if (studenti.size() < studenteInstance.getAulaScolastica().getCapienza())
+			studenteDAO.update(studenteInstance);
+		else 
+			throw new Exception("L'aula e' piena!");
 	}
 
 	@Transactional

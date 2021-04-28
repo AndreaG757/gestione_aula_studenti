@@ -10,7 +10,7 @@ public interface IStudenteService {
 
 	public Studente caricaSingoloStudente(Long id);
 
-	public void aggiorna(Studente studenteInstance);
+	public void aggiorna(Studente studenteInstance) throws Exception;
 
 	public void inserisciNuovo(Studente studenteInstance) throws Exception;
 
